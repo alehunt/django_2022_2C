@@ -1,5 +1,4 @@
 #global nonlocal
-
 #Global Scope
 x = 0
 def funcion():
