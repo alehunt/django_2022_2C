@@ -23,6 +23,9 @@ class EmpleadoFullTime(Empleado):
     def salario(self):
         return self.__salario
 
+    def __repr__(self) -> str:
+        return self.nombre_completo
+
 
 class EmpleadoPorHora(Empleado):
     def __init__(self, nombre, apellido, horas_trabajadas, valor_hora):
@@ -33,6 +36,9 @@ class EmpleadoPorHora(Empleado):
     @property
     def salario(self):
         return self.__horas_trabajadas * self.__valor_hora
+
+    def __repr__(self) -> str:
+        return self.nombre_completo
 
 
 class EmpleadoPasante(Empleado):
@@ -49,7 +55,7 @@ class EmpleadoPasante(Empleado):
 
 class Nomina:
     def __init__(self):
-        self._lista_empleados = []
+        self.__lista_empleados = []
 
     def agregar_empleado(self, empleado):
         self._lista_empleados.append(empleado)
@@ -71,6 +77,7 @@ nomina_empleados.agregar_empleado(EmpleadoFullTime('Lucas', 'Pratto', 6000))
 nomina_empleados.agregar_empleado(EmpleadoFullTime('Lucas', 'Janson', 6500))
 nomina_empleados.agregar_empleado(EmpleadoPorHora('Valentin', 'Gomez', 200, 50))
 nomina_empleados.agregar_empleado(EmpleadoPorHora('Walter', 'Bou', 150, 100))
+# nomina_empleados.agregar_empleado(5)
 nomina_empleados.agregar_empleado(EmpleadoPorHora('Santi', 'Caseres', 100, 150))
 # Un empleado no se puede instanciar porque es una clase abstracta
 # nomina_empleados.agregar_empleado(Empleado('Diego', 'Armando', 10))
