@@ -12,4 +12,5 @@ def mcm(n, m):
         mayor = m
     while (mayor % n != 0) or (mayor % m != 0):
         mayor += 1
+
     return mayor

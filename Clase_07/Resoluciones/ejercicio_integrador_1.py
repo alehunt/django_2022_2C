@@ -1,6 +1,7 @@
 """ Modulo encargado de calculos matemáticos """
 import math
 
+
 def mcd(n, m):
     """Función que calcula el máximo común divisor de dos números utilizando el algoritmo de eucliedes.
     Parámetros:

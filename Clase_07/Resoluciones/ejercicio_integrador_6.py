@@ -63,12 +63,12 @@ class Persona():
 
 
 # Prueba de utilización de código
-# juan = Persona("Alejandro", 39, "299500188")
-# print(juan.mostrar())
-# juan.nombre = "Alberto"
-# print(juan.mostrar())
-# if juan.es_mayor_de_edad:
-#     print(f"Juan es mayor de Edad")
-# else:
-#     print("Juan es menor")
-# pedro = Persona("Pedro", 2, 23)
+juan = Persona("Alejandro", 39, "299500188")
+print(juan.mostrar())
+juan.nombre = "Alberto"
+print(juan.mostrar())
+if juan.es_mayor_de_edad():
+    print(f"Juan es mayor de Edad")
+else:
+    print("Juan es menor")
+pedro = Persona("Pedro", 2, 23)
