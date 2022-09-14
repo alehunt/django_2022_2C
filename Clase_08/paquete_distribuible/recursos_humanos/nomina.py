@@ -1,5 +1,6 @@
 from recursos_humanos.personal.empleados import Empleado
 
+
 class Nomina:
     def __init__(self):
         self._lista_empleados = []
