@@ -1,0 +1,10 @@
+setup.py
+recursos_humanos/__init__.py
+recursos_humanos/nomina.py
+recursos_humanos.egg-info/PKG-INFO
+recursos_humanos.egg-info/SOURCES.txt
+recursos_humanos.egg-info/dependency_links.txt
+recursos_humanos.egg-info/top_level.txt
+recursos_humanos/personal/__init__.py
+recursos_humanos/personal/empleados.py
+recursos_humanos/personal/estudiantes.py

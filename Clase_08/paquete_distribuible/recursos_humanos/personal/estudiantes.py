@@ -1,6 +1,7 @@
 from recursos_humanos.personal import Empleado
 
-#Herencia múltiple
+
+# Herencia múltiple
 class Estudiante():
     def __init__(self, legajo):
         self.__legajo = legajo

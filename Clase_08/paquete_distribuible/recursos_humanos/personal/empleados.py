@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 class Empleado(ABC):
     def __init__(self, nombre, apellido):
         self.__nombre = nombre
@@ -13,6 +14,7 @@ class Empleado(ABC):
     @abstractmethod
     def salario(self):
         pass
+
 
 class EmpleadoFullTime(Empleado):
     def __init__(self, nombre, apellido, salario):
@@ -41,7 +43,7 @@ class EmpleadoPorHora(Empleado):
         return self.nombre_completo
 
 
-class EmpleadoPasante(Empleado):
+class EmpleadoPasantes(Empleado):
     def __init__(self, nombre, apellido):
         super().__init__(nombre, apellido)
 

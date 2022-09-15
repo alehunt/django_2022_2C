@@ -1,5 +1,5 @@
 from recursos_humanos.nomina import Nomina
-from recursos_humanos.personal.empleados import *
+
 
 nomina_empleados = Nomina()
 # pratto = EmpleadoFullTime('Lucas', 'Pratto', 6000)
