@@ -15,10 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from hola_mundo import views
+# from hola_mundo.views import hello, index, ola, vista_no_valida
+# from hola_mundo import views as vistas_mundo
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hola_mundo/', views.index, name="index"),
-    # path('hola_mundo/', include('hola_mundo.urls')),
+    # path('', vistas_mundo.vista_no_valida, name="index"),
+    # path('hola_mundo/', vistas_mundo.index, name="index"),
+    # path('hola_mundo/english', vistas_mundo.hello, name="index"),
+    # path('hola_mundo/portugues', vistas_mundo.ola, name="index"),
+    path('hola_mundo/', include('hola_mundo.urls')),
 ]
