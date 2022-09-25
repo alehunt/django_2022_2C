@@ -15,7 +15,7 @@ def hello(request):
 
 
 def ola(request):
-    return HttpResponse("Olá mundo", status=500)
+    return HttpResponse("Olá mundo")
 
 
 def saludar(request, primer_nombres):
