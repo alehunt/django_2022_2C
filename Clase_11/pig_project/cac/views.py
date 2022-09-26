@@ -1,8 +1,8 @@
 from cgitb import reset
 import re
 from django.http import HttpResponse
-
-from django.shortcuts import render
+from django.urls import reverse
+from django.shortcuts import render, redirect
 
 
 def index(request):
@@ -11,7 +11,7 @@ def index(request):
     else:
         titulo = f'Titulo cuando accedo por otro metodo'
     parameters_get = request.GET.get('algo')
-    return render(request, 'cac/index.html', {'titulo': titulo, 'parametro': parameters_get})
+    return render(request, 'index.html', {'titulo': titulo, 'parametro': parameters_get})
 
 # Create your views here.
 
@@ -32,6 +32,10 @@ def ver_proyectos(request, anio, mes):
         <h1>Proyectos del  - {mes}/{anio}</h1>
         <p>Listado de proyectos</p>
     """)
+
+
+def proyectos_2022_09(request):
+    return redirect(reverse('saludar_por_defecto'))
 
 
 def cursos(request, nombre):
