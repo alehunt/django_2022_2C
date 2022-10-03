@@ -26,7 +26,7 @@
                 </a>
                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                   <li><a href="{% url 'index' %}" class="nav-link px-2 link-secondary">Inicio</a></li>
-                  <li><a href="{% url 'lenguajes' %}" class="nav-link px-2 link-dark">Lenguajes</a></li>
+                  <li><a href="{% url 'pepe' %}" class="nav-link px-2 link-dark">Lenguajes</a></li>
                 </ul>
                 <div class="col-md-3 text-end">
                   <button type="button" class="btn btn-outline-primary me-2">Iniciar Sesión</button>
@@ -37,6 +37,7 @@
           </nav>
     </header>
     <ul class="list-group list-group-numbered align-items-center">
+
     {% for lenguaje in lenguajes %}
         <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
@@ -51,7 +52,7 @@
             <li style="color: {% cycle 'blue' 'red' %}">
             <div class="ms-2 me-auto">
               <div class="fw-bold"> Lenguaje</div>
-              {{lenguaje}}
+              {{lenguaje | upper}}
             </div>
           </li>
         {% endfor %}
