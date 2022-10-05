@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    {% load static %}
+    <!-- Latest compiled and minified CSS -->
+    <link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <!-- Latest compiled JavaScript -->
+    <script src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
+    <title>
+      {% block titulo %}
+        Codo a Codo
+      {% endblock titulo %}
+    </title>
+    <link rel="icon" type="image/x-icon" href="{% static '/img/favicon.svg' %}" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-warning"
+           aria-label="Tenth navbar example">
+        <div class="container">
+          <button class="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarsExample08"
+                  aria-controls="navbarsExample08"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-md-center"
+               id="navbarsExample08">
+            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+              <img src="{% static '/img/logocodoacodo.png' %}" alt="">
+            </a>
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+              <li>
+                <a href="{% url 'index' %}" class="nav-link px-2 link-secondary">Inicio</a>
+              </li>
+              <li>
+                <a href="{% url 'pepe' %}" class="nav-link px-2 link-dark">Lenguajes</a>
+              </li>
+            </ul>
+            <div class="col-md-3 text-end">
+              <button type="button" class="btn btn-outline-primary me-2">Iniciar Sesión</button>
+              <button type="button" class="btn btn-dark">Registrarse</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      {% block contenido %}
+      
+      {% endblock contenido %}
+    </main>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block contenido %}
+  {% load static %}
+  <div class="col-md-12 text-center">
+    <button type="button"
+            class="btn btn-primary align-self-center"
+            data-bs-toggle="collapse"
+            data-bs-target="#lengues_for">
+      <img src="{% static '/hola_mundo/img/DVO_photo-750x500.png' %}"
+           width="400px"
+           height="200px">
+    </button>
+    {% comment %} <div id="demo" class="collapse">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </div> {% endcomment %}
+    <ul id="lengues_for"
+        class="list-group list-group-numbered align-items-center collapse">
+      {% for lenguaje in lenguajes %}
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">Lenguaje</div>
+            {{ lenguaje }}
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="col-md-12 text-center">
+    <button type="button"
+            class="btn btn-primary align-self-center"
+            data-bs-toggle="collapse"
+            data-bs-target="#lengues_cycle">
+      <img src="{% static '/hola_mundo/img/top-10-languages-used-on-the-internet.png' %}"
+           width="400px"
+           height="200px">
+    </button>
+    <ul id="lengues_cycle"
+        class="list-group list-group-numbered align-items-center collapse">
+      {% for lenguaje in lenguajes %}
+        <li style="color: {% cycle 'blue' 'red' %}">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">Lenguaje</div>
+            {{ lenguaje | upper }}
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
