@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block titulo %}
+    Contacto
+{% endblock titulo %}
+{% block contenido %}
+    
+    <form action="{% url "contacto" %}" method="post">
+        {% csrf_token %}
+        {% comment %} {{ contacto_form }} {% endcomment %}
+        {% comment %} <table>
+            {{ contacto_form.as_table }}
+        </table>  {% endcomment %}
+        {% comment %} <ul>
+            {{ contacto_form.as_ul }}
+        </ul>  {% endcomment %}
+        {{ contacto_form.as_p}} 
+        <input type="submit" value="Contactar">
+    </form>
+
+{% endblock contenido %}
+
+
+  {% comment "formato tabla" %} 
+        <table>
+        {{ contacto_form.as_table }}
+        </table> 
+        {% endcomment %}
+        {% comment "formato lista" %} 
+        <ul>
+            {{ contacto_form.as_ul }}
+        </ul> 
+        {% endcomment %}
+        {% comment "formato p" %} 
+        {{ contacto_form.as_p}} 
+        {% endcomment %}
