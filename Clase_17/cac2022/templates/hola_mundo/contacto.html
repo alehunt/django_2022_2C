@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block titulo %}
+    Contacto
+{% endblock titulo %}
+{% block contenido %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+    <form action="{% url "contacto" %}" method="post">
+        {% csrf_token %}
+        <table>
+            {{ contacto_form.as_table }}
+        </table> 
+        <input type="submit" value="Contactar">
+    </form>
+{% endblock contenido %}
+
+
+  {% comment "formato tabla" %} 
+        <table>
+        {{ contacto_form.as_table }}
+        </table> 
+        {% endcomment %}
+        {% comment "formato lista" %} 
+        <ul>
+            {{ contacto_form.as_ul }}
+        </ul> 
+        {% endcomment %}
+        {% comment "formato p" %} 
+        {{ contacto_form.as_p}} 
+        {% endcomment %}

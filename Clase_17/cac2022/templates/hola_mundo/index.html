@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block titulo %}
+    Inicio
+{% endblock titulo %}
+{% block contenido %}
+    <h1 style="color:blue">HOLA GENTE! hoy es {{ hoy }}</h1>
+    <h2>{{ saludos.0 }} gente!</h2>
+    <h2>{{ saludos.1 }} people!</h2>
+    <h2>{{ saludos.2 }} pessoas!</h2>
+    <h2>{{ saludos.3 }} gentuza!</h2>
+    <h3>{{ idioma_saludos.es }} gente!</h3>
+    <h3>{{ idioma_saludos.en }} people!</h3>
+    <h3>{{ idioma_saludos.br }} pessoas!</h3>
+{% endblock contenido %}
