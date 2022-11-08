@@ -81,52 +81,52 @@ class ContactoForm(forms.Form):
 #         model = Estudiante
 #         fields = '__all__'
 
-class EstudianteForm(forms.ModelForm):
-    nombre = forms.CharField(error_messages={'required': 'PONE EL VALOOR'})
+# class EstudianteForm(forms.ModelForm):
+#     nombre = forms.CharField(error_messages={'required': 'PONE EL VALOOR'})
 
-    class Meta:
-        model = Estudiante
-        fields = '__all__'    
-        widgets = {
-            'apellido': forms.Textarea(attrs={'cols': 20, 'rows': 20}),
-        }
-        error_messages = {
-            'email': {
-                'required': 'Y EL VALOR QUE ONDA?',
-            },
-        }
+#     class Meta:
+#         model = Estudiante
+#         fields = '__all__'    
+#         widgets = {
+#             'apellido': forms.Textarea(attrs={'cols': 20, 'rows': 20}),
+#         }
+#         error_messages = {
+#             'email': {
+#                 'required': 'Y EL VALOR QUE ONDA?',
+#             },
+#         }
 
 
-class EstudianteFormValidado(EstudianteForm):
-    def clean_apellido(self):
-        apellido = self.cleaned_data['apellido']
-        if apellido.upper() == "MESSI":
-            raise ValidationError("Messi no es estudiante")
+# class EstudianteFormValidado(EstudianteForm):
+#     def clean_apellido(self):
+#         apellido = self.cleaned_data['apellido']
+#         if apellido.upper() == "MESSI":
+#             raise ValidationError("Messi no es estudiante")
 
-        return apellido
+#         return apellido
 
-# class EstudianteForm(forms.Form):
-#     nombre = forms.CharField(
-#         label='Nombre:',
-#         required=True,
-#         validators=(solo_caracteres,),
-#         widget=forms.TextInput(
-#             attrs={'class': 'form-control', 'placeholder': 'Ingrese solo texto'})
-#     )
-#     apellido = forms.CharField(
-#         label='Apellido:',
-#         required=True,
-#         validators=(solo_caracteres,),
-#         widget=forms.TextInput(
-#             attrs={'class': 'form-control', 'placeholder': 'Ingrese solo texto'})
-#     )
-#     email = forms.EmailField(
-#         label='Email:',
-#         max_length=50,
-#         error_messages={
-#             'required': 'Por favor completa el campo',
-#         },
-#         widget=forms.TextInput(
-#             attrs={'class': 'form-control', 'type': 'email'})
-#     )
-#     dni = forms.IntegerField(label="DNI:", error_messages={'required': 'Complete el DNI.', })
+class EstudianteForm(forms.Form):
+    nombre = forms.CharField(
+        label='Nombre:',
+        required=True,
+        validators=(solo_caracteres,),
+        widget=forms.TextInput(
+            attrs={'class': 'form-control', 'placeholder': 'Ingrese solo texto'})
+    )
+    apellido = forms.CharField(
+        label='Apellido:',
+        required=True,
+        validators=(solo_caracteres,),
+        widget=forms.TextInput(
+            attrs={'class': 'form-control', 'placeholder': 'Ingrese solo texto'})
+    )
+    email = forms.EmailField(
+        label='Email:',
+        max_length=50,
+        error_messages={
+            'required': 'Por favor completa el campo',
+        },
+        widget=forms.TextInput(
+            attrs={'class': 'form-control', 'type': 'email'})
+    )
+    dni = forms.IntegerField(label="DNI:", error_messages={'required': 'Complete el DNI.', })

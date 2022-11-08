@@ -12,10 +12,10 @@ urlpatterns = [
     # Administración
     path('administracion/estudiantes/editar/<int:id_estudiante>', views.estudiantes_editar, name='estudiantes_editar'),
     path('administracion/estudiantes/eliminar/<int:id_estudiante>', views.estudiantes_eliminar, name='estudiantes_eliminar'),
-    path('administracion/estudiantes/nuevo/', views.estudiantes_nuevo, name='estudiantes_nuevo'),
-    path('administracion/estudiantes', views.estudiantes_index, name='estudiantes_index'),
-    # path('administracion/estudiantes/nuevo/', views.EstudiantesView.as_view(), name='estudiantes_nuevo'),
-    # path('administracion/estudiantes', views.EstudiantesListView.as_view(), name='estudiantes_index'),
+    # path('administracion/estudiantes/nuevo/', views.estudiantes_nuevo, name='estudiantes_nuevo'),
+    # path('administracion/estudiantes', views.estudiantes_index, name='estudiantes_index'),
+    path('administracion/estudiantes/nuevo/', views.EstudiantesView.as_view(), name='estudiantes_nuevo'),
+    path('administracion/estudiantes', views.EstudiantesListView.as_view(), name='estudiantes_index'),
 
     # path('estudiantes')
     path('hola_mundo', views.hola_mundo),

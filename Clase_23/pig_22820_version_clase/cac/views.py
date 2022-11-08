@@ -7,13 +7,14 @@ from django.urls import reverse
 
 from django.template import loader
 
-from cac.forms import ContactoForm, EstudianteForm, EstudianteFormValidado
+from cac.forms import ContactoForm, EstudianteForm
 
 from django.contrib import messages
 
 from cac.models import Estudiante
 from django.views import View
 from django.views.generic import ListView
+
 
 def index(request):
     listado_cursos = [
@@ -148,9 +149,9 @@ def cursos(request, nombre):
     """)
 
 
-def estudiantes_index(request):
-    estudiantes = Estudiante.objects.all().order_by('dni')
-    return render(request, 'cac/administracion/estudiantes/index.html', {'estudiantes': estudiantes})
+# def estudiantes_index(request):
+#     estudiantes = Estudiante.objects.all().order_by('dni')
+#     return render(request, 'cac/administracion/estudiantes/index.html', {'estudiantes': estudiantes})
 
 
 def estudiantes_nuevo(request):
@@ -161,7 +162,8 @@ def estudiantes_nuevo(request):
             apellido = formulario.cleaned_data['apellido']
             dni = formulario.cleaned_data['dni']
             email = formulario.cleaned_data['email']
-            nuevo_estudiante = Estudiante(nombre=nombre, apellido=apellido, email=email, dni=dni)
+            nuevo_estudiante = Estudiante(
+                nombre=nombre, apellido=apellido, email=email, dni=dni)
 
             try:
                 nuevo_estudiante.save()
@@ -174,27 +176,39 @@ def estudiantes_nuevo(request):
     return render(request, 'cac/administracion/estudiantes/nuevo.html', {'formulario': formulario})
 
 
-# class EstudiantesListView(ListView):
-#     model = Estudiante
-#     context_object_name = 'estudiantes'
-#     template_name = 'cac/administracion/estudiantes/index.html'
-#     ordering = ['dni']
+class EstudiantesListView(ListView):
+    model = Estudiante
+    context_object_name = 'estudiantes'
+    template_name = 'cac/administracion/estudiantes/index.html'
+    # ordering = ['dni']
 
-# class EstudiantesView(View):
-#     form_class = EstudianteFormValidado
-#     template_name = 'cac/administracion/estudiantes/nuevo.html'
 
-#     def get(self, request, *args, **kwargs):
-#         form = self.form_class()
-#         return render(request, self.template_name, {'formulario': form})
+class EstudiantesView(View):
+    form_class = EstudianteForm
+    template_name = 'cac/administracion/estudiantes/nuevo.html'
 
-#     def post(self, request, *args, **kwargs):
-#         form = self.form_class(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('estudiantes_index')
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        return render(request, self.template_name, {'formulario': form})
 
-#         return render(request, self.template_name, {'formulario': form})
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            nombre = form.cleaned_data['nombre']
+            apellido = form.cleaned_data['apellido']
+            dni = form.cleaned_data['dni']
+            email = form.cleaned_data['email']
+            nuevo_estudiante = Estudiante(
+                nombre=nombre, apellido=apellido, email=email, dni=dni)
+
+            try:
+                nuevo_estudiante.save()
+            except ValueError as ve:
+                form.add_error('apellido', str(ve))
+            else:
+                return redirect('estudiantes_index')
+
+        return render(request, self.template_name, {'formulario': form})
 
 
 def estudiantes_editar(request, id_estudiante):
@@ -202,26 +216,36 @@ def estudiantes_editar(request, id_estudiante):
         estudiante = Estudiante.objects.get(id=id_estudiante)
     except Estudiante.DoesNotExist:
         return render(request, 'cac/administracion/404_admin.html')
-    
+
     if request.method == "POST":
-        formulario = EstudianteFormValidado(request.POST, instance=estudiante)
+        formulario = EstudianteForm(request.POST)
         if formulario.is_valid():
-            formulario.save()
-            return redirect('estudiantes_index')
+            estudiante.nombre = formulario.cleaned_data['nombre']
+            estudiante.apellido = formulario.cleaned_data['apellido']
+            estudiante.dni = formulario.cleaned_data['dni']
+            estudiante.email = formulario.cleaned_data['email']
+            try:
+                estudiante.save()
+            except ValueError as ve:
+                formulario.add_error('apellido', str(ve))
+            else:
+                return redirect('estudiantes_index')
     else:
-        formulario = EstudianteFormValidado(instance=estudiante)
+        formulario = EstudianteForm(initial={'id': estudiante.id, 'nombre': estudiante.nombre,
+                                    'apellido': estudiante.apellido, 'email': estudiante.email, 'dni': estudiante.dni})
 
     return render(request, 'cac/administracion/estudiantes/editar.html', {'formulario': formulario, 'id_estudiante': id_estudiante})
 
 
 def estudiantes_eliminar(request, id_estudiante):
     try:
-        estudiante = Estudiante.objects.get(id=id_estudiante)
+        estudiante = Estudiante.objects.get(pk=id_estudiante)
     except Estudiante.DoesNotExist:
         return render(request, 'cac/administracion/404_admin.html')
-    
+
     try:
         estudiante.delete()
     except ValueError as ve:
-        messages.error(request=request, message="Almada necesita seguir siendo estudiante")
+        messages.error(request=request,
+                       message="Almada necesita seguir siendo estudiante")
     return redirect('estudiantes_index')

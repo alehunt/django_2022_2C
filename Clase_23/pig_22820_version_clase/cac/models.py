@@ -9,6 +9,7 @@ class Estudiante(models.Model):
     apellido = models.CharField(max_length=150, verbose_name='Apellido:')
     email = models.EmailField(max_length=150, verbose_name='Email:', null=True, default=None)
     dni = models.BigIntegerField(verbose_name='DNI:')
+    # cursos = models.ManyToManyField(Curso)
 
     def __str__(self):
         return f"DNI: {self.dni} - {self.apellido}, {self.nombre}"
