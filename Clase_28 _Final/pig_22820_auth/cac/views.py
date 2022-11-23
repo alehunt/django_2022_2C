@@ -150,8 +150,6 @@ def cac_registrarse(request):
         form = RegistrarUsuarioForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
-            email = form.cleaned_data.get('email')
             messages.success(
                 request, f'Tu cuenta fue creada con éxito! Ya te podes loguear en el sistema.')
             return redirect('login')
@@ -172,6 +170,7 @@ def cac_login(request):
             return redirect('inicio')
         else:
             messages.error(request, f'Cuenta o password incorrecto, realice el login correctamente')
+    
     form = AuthenticationForm()
     return render(request, 'cac/publica/login.html', {'form': form, 'title': 'Log in'})
 
