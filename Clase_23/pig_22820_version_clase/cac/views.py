@@ -194,15 +194,8 @@ class EstudiantesView(View):
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
-            nombre = form.cleaned_data['nombre']
-            apellido = form.cleaned_data['apellido']
-            dni = form.cleaned_data['dni']
-            email = form.cleaned_data['email']
-            nuevo_estudiante = Estudiante(
-                nombre=nombre, apellido=apellido, email=email, dni=dni)
-
             try:
-                nuevo_estudiante.save()
+                form.save()
             except ValueError as ve:
                 form.add_error('apellido', str(ve))
             else:
