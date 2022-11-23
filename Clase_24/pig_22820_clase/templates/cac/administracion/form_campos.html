@@ -1,7 +1,8 @@
 {% for campo in formulario %}
     <div class="form-group">
         <label for="">{{campo.label}}</label>
-        
+      
+        {% comment %} {{campo}} {% endcomment %}
         <input 
             type="{{campo.field.widget.input_type}}" 
             name="{{campo.name}}" 
@@ -9,7 +10,7 @@
             class="form-control"
             placeholder="Ingrese {{campo.name}}"
             value="{{ campo.value | default:'' }}"
-        > 
+        >
     </div>
     <div>{{campo.errors}}</div>
 {% endfor %}

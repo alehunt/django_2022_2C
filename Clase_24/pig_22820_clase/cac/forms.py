@@ -76,25 +76,29 @@ class ContactoForm(forms.Form):
             self.add_error('asunto', msg)
 
 
-class EstudianteForm(forms.ModelForm):
-    class Meta:
-        model = Estudiante
-        fields = '__all__'
-
 # class EstudianteForm(forms.ModelForm):
-#     nombre = forms.CharField(error_messages={'required': 'PONE EL VALOOR'})
-
 #     class Meta:
 #         model = Estudiante
-#         fields = '__all__'    
-#         widgets = {
-#             'apellido': forms.Textarea(attrs={'cols': 20, 'rows': 20}),
-#         }
-#         error_messages = {
-#             'email': {
-#                 'required': 'Y EL VALOR QUE ONDA?',
-#             },
-#         }
+#         fields = '__all__'
+
+
+
+
+
+class EstudianteForm(forms.ModelForm):
+    nombre = forms.CharField(error_messages={'required': 'PONE EL VALOOR'})
+    
+    class Meta:
+        model = Estudiante
+        fields = '__all__'    
+        widgets = {
+            'apellido': forms.Textarea(attrs={'cols': 20, 'rows': 20}),
+        }
+        error_messages = {
+            'email': {
+                'required': 'Y EL VALOR QUE ONDA?',
+            },
+        }
 
 
 class EstudianteFormValidado(EstudianteForm):
@@ -104,6 +108,7 @@ class EstudianteFormValidado(EstudianteForm):
             raise ValidationError("Messi no es estudiante")
 
         return apellido
+
 
 # class EstudianteForm(forms.Form):
 #     nombre = forms.CharField(

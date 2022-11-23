@@ -160,8 +160,8 @@ class EstudiantesListView(ListView):
     ordering = ['dni']
 
 
-class EstudiantesViesssw(View):
-    form_class = EstudianteForm
+class EstudiantesView(View):
+    form_class = EstudianteFormValidado
     template_name = 'cac/administracion/estudiantes/nuevo.html'
 
     def get(self, request, *args, **kwargs):
