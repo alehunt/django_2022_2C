@@ -160,20 +160,20 @@ def cac_registrarse(request):
     return render(request, 'cac/publica/registrarse.html', {'form': form, 'title': 'registrese aquí'})
 
 
-def cac_login(request):
-    if request.method == 'POST':
-        # AuthenticationForm_can_also_be_used__
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            form = login(request, user)
-            messages.success(request, f' Bienvenido/a {username} !!')
-            return redirect('inicio')
-        else:
-            messages.error(request, f'Cuenta o password incorrecto, realice el login correctamente')
-    form = AuthenticationForm()
-    return render(request, 'cac/publica/login.html', {'form': form, 'title': 'Log in'})
+# def cac_login(request):
+#     if request.method == 'POST':
+#         # AuthenticationForm_can_also_be_used__
+#         username = request.POST['username']
+#         password = request.POST['password']
+#         user = authenticate(request, username=username, password=password)
+#         if user is not None:
+#             form = login(request, user)
+#             messages.success(request, f' Bienvenido/a {username} !!')
+#             return redirect('inicio')
+#         else:
+#             messages.error(request, f'Cuenta o password incorrecto, realice el login correctamente')
+#     form = AuthenticationForm()
+#     return render(request, 'cac/publica/login.html', {'form': form, 'title': 'Log in'})
 
 
 

@@ -1,0 +1,22 @@
+{% extends '../base_administracion.html' %}
+
+{% block titulo %}Nuevo proyecto{% endblock%}
+
+{% block contenido %}
+<h1 class="mt-4">Proyectos CAC</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a href="{% url 'inicio_administracion' %}">Administracion</a></li>
+    <li class="breadcrumb-item active">Nuevo proyecto</li>
+</ol>
+
+
+<div class="card">
+    <div class="card-header">Creacion de proyecto</div>
+    <div class="card-body">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% include 'cac/administracion/proyectos/form.html' %}
+        </form>
+    </div>
+</div>
+{% endblock %}

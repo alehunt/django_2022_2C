@@ -15,6 +15,7 @@ urlpatterns = [
     # accounts/reset/done/ [name='password_reset_complete']
     path('accounts/password_change/', auth_views.PasswordChangeView.as_view(success_url="/"), name='password_change'), 
     path('accounts/registrarse', views.cac_registrarse, name='registrarse'),
+#     path('accounts/login', auth_views.LoginView.as_view(template_name="cac/publica/login.html"), name='login'), 
     path('accounts/', include('django.contrib.auth.urls')),
     #     path('cuentas/login', views.cac_login, name='login'),
     #     path('cuentas/logout/',
